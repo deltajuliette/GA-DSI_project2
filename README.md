@@ -130,13 +130,13 @@ We will try out several models such as (1) Linear regression, (2) Ridge regressi
 
 Before we carry out ridge / lasso regressions, we will first need to standardize our features (X). Since we are adding a loss function (with penalty) in Ridge and Lasso regressions, scaling is required so that regularization penalises each variable equally fairly.
 
-Standardization does not change the skew of the distribution. What it does is to transform the values so that the overall distribution has  $μ$  = 0 and  $σ^2$  = 1. The shape of the actual distribution remains unchanged.
+Standardization does not change the skew of the distribution. What it does is to transform the values so that the overall distribution has  μ  = 0 and  σ2  = 1. The shape of the actual distribution remains unchanged.
 
 Many elements used in the objective function of a learning algorithm assume that all features are centered around zero and have variance in the same order. If a feature has a variance that is orders of magnitude larger than others, it might dominate the objective function and make the estimator unable to learn from other features correctly as expected.
 
 When a feature does not follow a linear distribution, it would be unwise to use the mean and the standard deviation to scale it. Log-transformation changes the skew of the distribution, and is useful when you deal with right-skewed distributions (fat right tails).
 
-We will also optimise $\alpha$ hyperparameter for both ridge and lasso regression models.
+We will also optimise alpha hyperparameters for both ridge and lasso regression models.
 
 
 ---
@@ -144,14 +144,13 @@ We will also optimise $\alpha$ hyperparameter for both ridge and lasso regressio
 ### Key findings
 
 **Model selection**
-+-------------------+-----------+----------+----------+-----------+
-|       Model       | R2 scores |   RMSE   |   MAE    | Selection |
-+-------------------+-----------+----------+----------+-----------+
-|  Baseline (Mean)  |  -0.0105  | 73309.49 | 55817.79 |           |
-| Linear Regression |   0.8734  | 20718.47 | 14091.24 |           |
-|  Ridge Regression |   0.9003  | 20024.02 | 13836.78 |           |
-|  Lasso Regression |   0.9084  | 19566.67 | 13697.66 |     *     |
-+-------------------+-----------+----------+----------+-----------+
+
+|Model|R2 scores|RMSE|MAE|Selection|
+|:-|:-:|:-|:-|:-|
+|Baseline (Mean)|-0.0105|73309.49|55817.79||
+|Linear Regression|0.8734|20718.47|14091.24||
+|Ridge Regression|0.9003|20024.02|13836.78||
+|Lasso Regression|0.9084|19566.67|13697.66|Y|
 
 We've decided to select the  Lasso regression model from the list of models presented above. Why?
 
@@ -160,7 +159,7 @@ We've decided to select the  Lasso regression model from the list of models pres
     * Root mean squared errors (**RMSE**) represents the approximate average distance from predicted values; In this case, actual saleprices are on average ~19.5K away from our predicted values
     * Mean absolute errors (**MAE**) represents the mean distance from the predicted value; Tying this back to our Lasso regression model, actual saleprices have a mean distance of 13.7k from our predicted values
     
-**Our thoughts**: Our lasso regression model tops the rankings for $R^2$ scores, RMSEs and MAEs. So let's move forward with that model in mind.
+**Our thoughts**: Our lasso regression model tops the rankings for R2 sores, RMSEs and MAEs. So let's move forward with that model in mind.
 
 We will then extract the largest (+/-) coefficients from our Lasso regression model to determine which features matter for a house's saleprice.
 
